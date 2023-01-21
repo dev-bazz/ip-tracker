@@ -3,6 +3,8 @@ import App from './App';
 
 test('renders learn react link', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const text = screen.getByText('Hello World')
+  // eslint-disable-next-line testing-library/no-debugging-utils
+  screen.debug()
+  expect(text).toBeInTheDocument()
 });
