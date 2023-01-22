@@ -1,9 +1,9 @@
 import React from 'react'
 
-function IP_Tracker() {
+function IPTracker() {
   return (
-    <div>IP_Tracker</div>
+    <div className="ipTracker">IP_Tracker</div>
   )
 }
 
-export { IP_Tracker }
+export { IPTracker }
