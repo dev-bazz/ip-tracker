@@ -1,10 +1,15 @@
 /* Box sizing rules */
+@use "./utilities" as *;
 *,
 *::before,
 *::after {
 	box-sizing: border-box;
 }
-
+/*   Font Family*/
+@font-face {
+	font-family: Rubik;
+	src: url(./Rubik-VariableFont_wght.ttf);
+}
 /* Remove default margin */
 body,
 h1,
@@ -18,7 +23,10 @@ dl,
 dd {
 	margin: 0;
 }
-
+:root {
+	font-family: Rubik;
+	font-variation-settings: map-get($fontWeight, "regular");
+}
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
 ul[role="list"],
 ol[role="list"] {

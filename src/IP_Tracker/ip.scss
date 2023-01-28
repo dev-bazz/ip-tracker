@@ -7,7 +7,9 @@
 		grid-column: 1 / -1;
 		grid-row: 1 / -1;
 	}
+
 	.input-area {
+		padding-inline: pxTOrem(16px, em);
 		max-width: pxTOrem(1200px);
 		margin-inline: auto;
 		display: grid;
@@ -19,24 +21,34 @@
 			background-color: white;
 			display: flex;
 			border-radius: pxTOrem(14px);
-
-			max-width: pxTOrem(450px);
-			width: pxTOrem(350px);
+			width: pxTOrem(480px);
 			overflow: hidden;
 			justify-content: space-between;
-			&:focus-within {
-				border: 2px solid pink;
-			}
+
 			input {
 				all: unset;
-				padding-inline: pxTOrem(8px);
+				padding-inline: pxTOrem(16px, em);
 				flex-grow: 2;
 			}
+
 			button {
 				all: unset;
-				background-color: black;
-				padding-block: pxTOrem(8px);
-				padding-inline: pxTOrem(8px);
+				background-color: map-get($color, "DarkGrey");
+				padding-block: pxTOrem(24px, em);
+				padding-inline: pxTOrem(24px, em);
+				cursor: pointer;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+				display: grid;
+				place-items: center;
+				&:active {
+					background-color: darken(
+						map-get($color, "DarkGrey"),
+						$amount: 30
+					);
+				}
 			}
 		}
 	}
