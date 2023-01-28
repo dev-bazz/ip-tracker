@@ -1,0 +1,43 @@
+@use "../styles/utilities" as *;
+
+.ip-container {
+	display: grid;
+	place-content: center;
+	& > * {
+		grid-column: 1 / -1;
+		grid-row: 1 / -1;
+	}
+	.input-area {
+		max-width: pxTOrem(1200px);
+		margin-inline: auto;
+		display: grid;
+		place-items: center;
+		grid-column: 1 / -1;
+		grid-row: 1 / -1;
+
+		.input {
+			background-color: white;
+			display: flex;
+			border-radius: pxTOrem(14px);
+
+			max-width: pxTOrem(450px);
+			width: pxTOrem(350px);
+			overflow: hidden;
+			justify-content: space-between;
+			&:focus-within {
+				border: 2px solid pink;
+			}
+			input {
+				all: unset;
+				padding-inline: pxTOrem(8px);
+				flex-grow: 2;
+			}
+			button {
+				all: unset;
+				background-color: black;
+				padding-block: pxTOrem(8px);
+				padding-inline: pxTOrem(8px);
+			}
+		}
+	}
+}
