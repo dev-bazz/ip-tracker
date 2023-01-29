@@ -1,5 +1,12 @@
 .map {
-	width: 100vw;
 	max-width: 1440px;
 	margin: auto;
+	& > * {
+		min-height: 100vh;
+		min-height: 100dvh;
+	}
+}
+
+.myMap {
+	position: relative;
 }

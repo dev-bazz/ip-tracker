@@ -1,6 +1,7 @@
 @use "../styles/utilities" as *;
 
 .ip-container {
+	container-type: inline-size;
 	display: grid;
 	place-content: center;
 	& > * {
@@ -16,40 +17,94 @@
 		place-items: center;
 		grid-column: 1 / -1;
 		grid-row: 1 / -1;
+	}
+}
 
-		.input {
-			background-color: white;
-			display: flex;
-			border-radius: pxTOrem(14px);
-			width: pxTOrem(480px);
-			overflow: hidden;
-			justify-content: space-between;
+.input {
+	background-color: white;
+	display: flex;
+	border-radius: pxTOrem(14px, em);
+	width: pxTOrem(480px, em);
+	max-width: pxTOrem(480px);
+	overflow: hidden;
+	justify-content: space-between;
 
-			input {
-				all: unset;
-				padding-inline: pxTOrem(16px, em);
-				flex-grow: 2;
-			}
+	input {
+		all: unset;
+		padding-inline: pxTOrem(16px, em);
+		flex-grow: 2;
+	}
 
-			button {
-				all: unset;
-				background-color: map-get($color, "DarkGrey");
-				padding-block: pxTOrem(24px, em);
-				padding-inline: pxTOrem(24px, em);
-				cursor: pointer;
-				-webkit-user-select: none;
-				-moz-user-select: none;
-				-ms-user-select: none;
-				user-select: none;
-				display: grid;
-				place-items: center;
-				&:active {
-					background-color: darken(
-						map-get($color, "DarkGrey"),
-						$amount: 30
-					);
-				}
-			}
+	button {
+		all: unset;
+		background-color: map-get($color, "DarkGrey");
+		padding-block: pxTOrem(24px, em);
+		padding-inline: pxTOrem(24px, em);
+		cursor: pointer;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		display: grid;
+		place-items: center;
+		&:active {
+			background-color: darken(map-get($color, "DarkGrey"), $amount: 30);
 		}
+	}
+}
+
+.ipTracker {
+	position: relative;
+}
+.stats {
+	width: 100%;
+	max-width: pxTOrem(800px);
+	aspect-ratio: 16/2.5;
+	background-color: transparent;
+	padding-inline: pxTOrem(16px, em);
+	border-radius: pxTOrem(8px);
+	margin: auto;
+	position: absolute;
+	bottom: pxTOrem(-54px);
+	right: 50%;
+	translate: 50%;
+	z-index: 100;
+}
+.stats-content {
+	width: 100%;
+	max-width: pxTOrem(700px);
+	aspect-ratio: 16/2.5;
+	background-color: rgb(255, 255, 255);
+	border-radius: pxTOrem(8px);
+	display: grid;
+	place-items: center;
+	padding-inline: pxTOrem(20px, em);
+	padding-block: pxTOrem(16px, em);
+}
+.stats-items {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(pxTOrem(80px), 1fr));
+	width: 100%;
+	place-items: center;
+}
+@container (max-width:600px) {
+	.input {
+		font-size: 14px;
+	}
+}
+
+@container (max-width:600px) {
+	.input {
+		width: pxTOrem(300px, em);
+	}
+}
+@media (max-width: 600px) {
+	.stats {
+		bottom: pxTOrem(-80px);
+	}
+}
+@media (max-width: 1048px) {
+	.stats {
+		bottom: pxTOrem(-80px);
 	}
 }
