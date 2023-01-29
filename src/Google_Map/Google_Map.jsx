@@ -25,15 +25,15 @@ const GoogleMapPage = () => {
       <MapBox mapboxAccessToken={process.env.REACT_APP_MAP_BOX_TOKEN}
         initialViewState={
           {
-            latitude: 9.0820,
-            longitude: 8.6753,
-            zoom: 5
+            latitude: 6.5227,
+            longitude: 3.6218,
+            zoom: 11
           }
         }
         mapStyle='mapbox://styles/bazuaye/cldgwh5eu000301oj9tagvufq'
       >
-        <Marker latitude={9.0820}
-          longitude={8.6753} />
+        <Marker latitude={6.5227}
+          longitude={3.6218} />
       </MapBox>
     </div>
   </div>

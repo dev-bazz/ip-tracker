@@ -86,6 +86,17 @@
 	grid-template-columns: repeat(4, minmax(pxTOrem(80px), 1fr));
 	width: 100%;
 	place-items: center;
+	.item {
+		h4 {
+			font-size: pxTOrem(12px);
+			text-transform: uppercase;
+			color: grey;
+		}
+		p {
+			font-size: pxTOrem(24px);
+			font-variation-settings: map-get($fontWeight, "bold");
+		}
+	}
 }
 @container (max-width:600px) {
 	.input {
@@ -99,6 +110,9 @@
 	}
 }
 @media (max-width: 600px) {
+	.stats-items {
+		grid-template-columns: repeat(2, minmax(pxTOrem(80px), 1fr));
+	}
 	.stats {
 		bottom: pxTOrem(-80px);
 	}
