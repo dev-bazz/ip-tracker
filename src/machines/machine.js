@@ -8,27 +8,21 @@ const appState =
 			initial: "init",
 			states: {
 				init: {
+					description: "Starting State of Application",
 					on: {
-						Search: [
-							{
-								target: "init",
-								cond: "checkInput",
-								actions: "updatePlaceholder",
-								internal: false,
-							},
-							{
-								target: "GetIP Address",
-								actions: ["updateInput", "con"],
-							},
-						],
+						Search: {
+							target: "GetIP Address",
+							actions: "updatePlaceholder",
+						},
 					},
 				},
 				"GetIP Address": {
+					description: "Fetching API IP Address",
 					initial: "fetchResponse",
 					states: {
 						fetchResponse: {
 							entry: "isLoading",
-							exit: "isNotLoadig",
+							exit: "isLoading",
 							invoke: {
 								src: "getData",
 								id: "fetching",
@@ -62,32 +56,105 @@ const appState =
 			},
 			context: {
 				input: ``,
-				placeholder: `Place An IP Address here`,
+				placeholder: `😏check your IP Address or others`,
+				isLoading: false,
+				data: {
+					country: `Canada`,
+					timezone: `America/Toronto					`,
+					lat: `6.5227`,
+					lon: ` 3.6218`,
+					query: `24.48.0.1`,
+					isp: `Le Groupe`,
+				},
 			},
 			predictableActionArguments: true,
 			preserveActionOrder: true,
 		},
 		{
 			actions: {
-				updateInput: assign({
-					input: (context, event) => event.val,
-					placeholder: (context, event) => event.defaultPlacerHolder,
-				}),
-				con: (context, event) => {
-					console.log(context.input, event.val);
-				},
 				updatePlaceholder: assign({
-					placeholder: (context, event) => event.errorMsg,
+					placeholder: (context, event) => event.msg,
 				}),
-			},
-			guards: {
-				checkInput: (context, event) => {
-					if (event.val.length === 0 || isNaN(event.val)) {
-						return true;
-					}
-				},
+				upDateContext: assign({
+					data: (context, event) => {
+						console.log(event.data, `hmmm..`);
+						return event.data;
+					},
+				}),
+				isLoading: assign({
+					isLoading: (context, event) => !context.isLoading,
+				}),
+				setErroMsg: assign({
+					data: (context, event) => {
+						console.log(context);
+						return {
+							country: `Error`,
+							timezone: `Error`,
+							lat: `Error`,
+							lon: `Error`,
+							query: `Error`,
+							isp: `Error`,
+						};
+					},
+				}),
 			},
 		}
 	);
+
+// const gg = createMachine({
+// 	id: "IP Tracker",
+// 	initial: "init",
+// 	states: {
+// 		init: {
+// 			description: "Starting State of Application",
+// 			on: {
+// 				Search: {
+// 					target: "GetIP Address",
+// 					actions: "updatePlaceholder",
+// 				},
+// 			},
+// 		},
+// 		"GetIP Address": {
+// 			description: "Fetching API IP Address",
+// 			initial: "fetchResponse",
+// 			states: {
+// 				fetchResponse: {
+// 					entry: "isLoading",
+// 					exit: "isNotLoadig",
+// 					invoke: {
+// 						src: "getData",
+// 						id: "fetching",
+// 						onDone: [
+// 							{
+// 								target: "Valid IP",
+// 								actions: "upDateContext",
+// 							},
+// 						],
+// 						onError: [
+// 							{
+// 								target: "inValid IP",
+// 								actions: "setErroMsg",
+// 							},
+// 						],
+// 					},
+// 				},
+// 				"Valid IP": {
+// 					type: "final",
+// 				},
+// 				"inValid IP": {
+// 					always: {
+// 						target: "#IP Tracker.init",
+// 					},
+// 				},
+// 			},
+// 			onDone: {
+// 				target: "init",
+// 			},
+// 		},
+// 	},
+// 	context: {},
+// 	predictableActionArguments: true,
+// 	preserveActionOrder: true,
+// });
 
 export { appState as default };

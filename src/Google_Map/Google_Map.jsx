@@ -1,42 +1,40 @@
-import { useCallback, useState } from "react";
-import "mapbox-gl/dist/mapbox-gl.css"
+import "mapbox-gl/dist/mapbox-gl.css";
 import "./map.scss";
-import MapBox, { Marker } from "react-map-gl"
-
-
-
-
+import MapBox, { Marker } from "react-map-gl";
+import { useMachine } from "@xstate/react";
+import appState from "../machines/machine";
+import { useEffect } from "react";
 
 const GoogleMapPage = () => {
-  const [location, setLocation] = useState(null)
+	const [state] = useMachine(appState),
+		{
+			context: {
+				data: { lat, lon },
+			},
+		} = state;
+	useEffect(() => {
+		console.log(lat, lon);
+	}, [lat, lon]);
 
-  const getIP = useCallback(async () => {
-    const data = await fetch(process.env.REACT_APP_IPIFY_API),
-      result = await data.json()
-    console.log(result)
-    const lng = await result.location.lng,
-      lat = await result.location.lat
-    setLocation({ lng, lat })
-  }, [])
+	return (
+		<div className="myMap">
+			<div className="map">
+				<MapBox
+					mapboxAccessToken={process.env.REACT_APP_MAP_BOX_TOKEN}
+					initialViewState={{
+						latitude: lat,
+						longitude: lon,
+						zoom: 11,
+					}}
+					mapStyle="mapbox://styles/bazuaye/cldgwh5eu000301oj9tagvufq">
+					<Marker
+						latitude={lat}
+						longitude={lon}
+					/>
+				</MapBox>
+			</div>
+		</div>
+	);
+};
 
-  return <div className="myMap">
-
-    <div className="map">
-      <MapBox mapboxAccessToken={process.env.REACT_APP_MAP_BOX_TOKEN}
-        initialViewState={
-          {
-            latitude: 6.5227,
-            longitude: 3.6218,
-            zoom: 11
-          }
-        }
-        mapStyle='mapbox://styles/bazuaye/cldgwh5eu000301oj9tagvufq'
-      >
-        <Marker latitude={6.5227}
-          longitude={3.6218} />
-      </MapBox>
-    </div>
-  </div>
-}
-
-export { GoogleMapPage }
+export { GoogleMapPage };
