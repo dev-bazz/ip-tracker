@@ -15,6 +15,10 @@ const appState =
 							actions: "updatePlaceholder",
 						},
 					},
+					invoke: {
+						src: "getData",
+						id: "Mounting First",
+					},
 				},
 				"GetIP Address": {
 					description: "Fetching API IP Address",
@@ -50,7 +54,14 @@ const appState =
 						},
 					},
 					onDone: {
-						target: "init",
+						target: "result",
+					},
+				},
+				result: {
+					on: {
+						Search: {
+							target: "GetIP Address",
+						},
 					},
 				},
 			},
