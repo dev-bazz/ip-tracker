@@ -2,8 +2,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import "./map.scss";
 import MapBox, { Marker } from "react-map-gl";
 import { useMachine } from "@xstate/react";
-import appState from "../machines/machine";
-import { useEffect } from "react";
+import appState from "../machines/machine.js";
 
 const GoogleMapPage = () => {
 	const [state] = useMachine(appState),
@@ -12,9 +11,6 @@ const GoogleMapPage = () => {
 				data: { lat, lon },
 			},
 		} = state;
-	useEffect(() => {
-		console.log(lat, lon);
-	}, [lat, lon]);
 
 	return (
 		<div className="myMap">
@@ -24,7 +20,7 @@ const GoogleMapPage = () => {
 					initialViewState={{
 						latitude: lat,
 						longitude: lon,
-						zoom: 11,
+						zoom: 1,
 					}}
 					mapStyle="mapbox://styles/bazuaye/cldgwh5eu000301oj9tagvufq">
 					<Marker

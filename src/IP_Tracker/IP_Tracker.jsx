@@ -1,27 +1,9 @@
-import { useMachine } from "@xstate/react";
-import React, { useRef } from "react";
 import backgroundImage from "../images/pattern-bg.png";
-import appState from "../machines/machine";
 import "./ip.scss";
 
-function IPTracker() {
-	const inputElement = useRef();
-	const [state, send] = useMachine(appState, {
-		services: {
-			getData: async () => {
-				const response = await fetch(
-						`http://ip-api.com/json/${inputElement.current.value}`
-					),
-					data = await response.json();
-				console.log(data);
-				return data;
-			},
-		},
-	});
-
-	const { value, context, history } = state;
-	console.log(history);
-	console.log(JSON.stringify(value));
+function IPTracker({ compRef, state, send }) {
+	const { context } = state;
+	console.log(state.value, "Current State");
 	return (
 		<div className="ipTracker">
 			<div className="ip-container">
@@ -29,18 +11,21 @@ function IPTracker() {
 					src={backgroundImage}
 					alt="Pattern"
 				/>
-				<div className="input-area">
+				<form
+					className="input-area"
+					onSubmit={(e) => e.preventDefault()}>
 					<div className="input">
 						<input
-							ref={inputElement}
+							ref={compRef}
 							type="text"
 							placeholder={context.placeholder}
+							required
 						/>
 						<button
-							onClick={() => {
+							onClick={(e) => {
 								const {
 										current: { value },
-									} = inputElement,
+									} = compRef,
 									val = value;
 								send({
 									type: "Search",
@@ -63,7 +48,7 @@ function IPTracker() {
 							</svg>
 						</button>
 					</div>
-				</div>
+				</form>
 			</div>
 			<div className="stats">
 				<div className="stats-content">
