@@ -19,7 +19,7 @@ function IPTracker({ compRef, state, send }) {
 							ref={compRef}
 							type="text"
 							placeholder={context.placeholder}
-							required
+							required={true}
 						/>
 						<button
 							onClick={(e) => {
