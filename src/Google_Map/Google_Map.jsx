@@ -16,7 +16,9 @@ const GoogleMapPage = () => {
 		<div className="myMap">
 			<div className="map">
 				<MapBox
-					mapboxAccessToken={process.env.REACT_APP_MAP_BOX_TOKEN}
+					mapboxAccessToken={
+						"pk.eyJ1IjoiYmF6dWF5ZSIsImEiOiJjbGRndzcwM3UwNnIyM3BwYjAxN2ZiMTMyIn0.0uE-IagbLBPUMEbNLYabCg"
+					}
 					initialViewState={{
 						latitude: lat,
 						longitude: lon,
