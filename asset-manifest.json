@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/ip-tracker/static/css/main.7c3cc4d0.css",
+    "main.js": "/ip-tracker/static/js/main.1f3e5f4d.js",
+    "static/js/483.3c619791.chunk.js": "/ip-tracker/static/js/483.3c619791.chunk.js",
+    "static/js/496.0abf72b2.chunk.js": "/ip-tracker/static/js/496.0abf72b2.chunk.js",
+    "static/media/Rubik-VariableFont_wght.ttf": "/ip-tracker/static/media/Rubik-VariableFont_wght.6bd385da0b79456fed41.ttf",
+    "static/media/pattern-bg.png": "/ip-tracker/static/media/pattern-bg.a60a3c85aa8b88aac4b7.png",
+    "index.html": "/ip-tracker/index.html",
+    "main.7c3cc4d0.css.map": "/ip-tracker/static/css/main.7c3cc4d0.css.map",
+    "main.1f3e5f4d.js.map": "/ip-tracker/static/js/main.1f3e5f4d.js.map",
+    "483.3c619791.chunk.js.map": "/ip-tracker/static/js/483.3c619791.chunk.js.map",
+    "496.0abf72b2.chunk.js.map": "/ip-tracker/static/js/496.0abf72b2.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7c3cc4d0.css",
+    "static/js/main.1f3e5f4d.js"
+  ]
+}
