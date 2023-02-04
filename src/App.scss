@@ -1,0 +1,11 @@
+@use "./styles/utilities" as *;
+.loading {
+	min-height: 100dvh;
+	min-height: 100dvh;
+	display: grid;
+	place-items: center;
+	background-color: white;
+	p {
+		font-size: pxTOrem(24px);
+	}
+}

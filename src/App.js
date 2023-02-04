@@ -11,6 +11,13 @@ function App() {
 
 	const { context } = state;
 	console.log(context.isLoading, "is Loading");
+	if (context.isLoading === true) {
+		return (
+			<div className="loading">
+				<p>Loading...</p>
+			</div>
+		);
+	}
 
 	return (
 		<div className="app">
