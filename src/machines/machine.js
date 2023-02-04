@@ -1,7 +1,7 @@
 import { assign, createMachine } from "xstate";
 
 const getIP = async (context) => {
-	const response = await fetch(`http://ip-api.com/json/${context}`),
+	const response = await fetch(`https://ipapi.co/${context}/json/`),
 		data = await response.json();
 	console.log(data);
 	return data;
@@ -107,12 +107,12 @@ const appState =
 				}),
 				upDateContext: assign({
 					data: (context, event) => ({
-						country: event.data.country,
+						country: event.data.country_name,
 						timezone: event.data.timezone,
-						query: event.data.query,
-						isp: event.data.isp,
-						lat: event.data.lat,
-						lon: event.data.lon,
+						query: event.data.ip,
+						isp: event.data.org,
+						lat: event.data.latitude,
+						lon: event.data.longitude,
 					}),
 				}),
 				isLoading: assign({
